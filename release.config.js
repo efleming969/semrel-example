@@ -3,6 +3,7 @@
  */
 module.exports = {
     branches: [ "trunk" ],
+    repositoryUrl: "https://github.com/efleming969/semrel-example",
     plugins: [
         "@semantic-release/commit-analyzer",
         "@semantic-release/release-notes-generator",
