@@ -1,0 +1,41 @@
+name: Main Workflow
+
+on:
+  push:
+    branches:
+      - trunk
+
+permissions:
+  contents: read # for checkout
+
+jobs:
+  release:
+    name: Publish npm modules
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      issues: write
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://npm.pkg.github.com
+
+      - shell: bash
+        run: npm clean-install
+
+      - shell: bash
+        run: npm run compile
+
+      - shell: bash
+        run: npx semantic-release
+        env:
+          DEBUG: 'semantic-release:*'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
