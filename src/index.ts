@@ -7,7 +7,7 @@ export type Greeting = {
 }
 
 export function bar(): Greeting {
-  // comment 2
+  // comment 3
   return { text: "Bar" }
 }
 
