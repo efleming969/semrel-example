@@ -7,7 +7,10 @@
     "compile": "tsc",
     "release": "semantic-release"
   },
-  "repository": "https://github.com/efleming969/semrel-example",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/efleming969/semrel-example.git"
+  },
   "license": "ISC",
   "devDependencies": {
     "@semantic-release/commit-analyzer": "^11.1.0",
